@@ -1,0 +1,16 @@
+{
+  "name": "nil-issue-reporter",
+  "version": "1.0.0",
+  "description": "Non-Inclusive Language(nil) issue reporter parses the issue content and write comment to the author on the issue.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Karthikeyan Govindaraj <github.gkarthiks@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.3.0",
+    "@actions/github": "^5.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+name: 'NIL Reporter'
+description: 'Parses the isssue and scans for the non-inlcusive language and comments back'
+inputs:
+  nil-file:
+    description: 'A text(.txt) file with comma separated non-inclusive language'
+    required: true
+    default: 'nil.txt'
+runs:
+  using: 'node12'
+  main: 'index.js'
