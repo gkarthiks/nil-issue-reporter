@@ -6,7 +6,6 @@ try {
     var eventName = github.context.eventName
     if (eventName.startsWith("issue")) {
         var nilFileLoc = core.getInput("nil-file").trim();
-        nilFileLoc = "nil.txt"
         core.info("The NIL file picked up for comparative scan is from: "+nilFileLoc)
         var nilFileData = fs.readFileSync(nilFileLoc, 'utf8');
 
