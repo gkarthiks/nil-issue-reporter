@@ -68,7 +68,7 @@ function validateAndComment(stringToValidate, regEx, githubToken) {
 function commentToIssue(body, githubToken) {
     core.info("=========================================");
     core.info(JSON.stringify(github.getOctokit(githubToken)));
-    github.getOctokit(githubToken).issues.createComment({
+    github.getOctokit(githubToken).rest.issues.createComment({
         issue_number: github.context.issue.number,
         owner: github.context.repo.owner,
         repo: github.context.repo.repo,
