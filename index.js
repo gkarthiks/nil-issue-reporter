@@ -51,11 +51,12 @@ function validateAndComment(stringToValidate, regEx, githubToken) {
     var matchedNIL = stringToValidate.toLocaleLowerCase().match(regEx);
 
     if (matchedNIL != null && matchedNIL.length > 0) {
+        core.info("===============================================================")
+        core.info(githubToken)
+        core.info("===============================================================")
         core.info("Got the following non-inclusive language in the context: "+matchedNIL);
         var bodyString = "Hi, you have the following non-inclusive language in the issue, please rephrase the sentence with inclusive language. Refer https://inclusivenaming.org/language/word-list/";
         commentToIssue(bodyString, githubToken)
-        core.info("===============================================================")
-        core.info(githubToken)
     } else {
         core.info("Hurray! The content is completely inclusive!!!");
     }
