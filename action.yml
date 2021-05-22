@@ -5,6 +5,9 @@ inputs:
     description: 'A text(.txt) file with comma separated non-inclusive language'
     required: true
     default: 'nil.txt'
+  token:
+    description: Github token for octokit to comment back in the issue.
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'
