@@ -53,7 +53,7 @@ function validateAndComment(stringToValidate, regEx, githubToken) {
     if (matchedNIL != null && matchedNIL.length > 0) {
         core.info("Got the following non-inclusive language in the context: "+matchedNIL);
         var bodyString = "Hi, you have the following non-inclusive language in the issue, please rephrase the sentence with inclusive language. Refer https://inclusivenaming.org/language/word-list/";
-        commentToIssue(bodyString, githubToken);
+        commentToIssue(bodyString, githubToken)
     } else {
         core.info("Hurray! The content is completely inclusive!!!");
     }
@@ -64,7 +64,7 @@ function validateAndComment(stringToValidate, regEx, githubToken) {
 // Commenting back to issue with provided message
 function commentToIssue(body, githubToken) {
     core.info("=========================================");
-    core.info(github.getOctokit(githubToken));
+    core.info(JSON.stringify(github.getOctokit(githubToken)));
     github.getOctokit(githubToken).issues.createComment({
         issue_number: github.context.issue.number,
         owner: github.context.repo.owner,
