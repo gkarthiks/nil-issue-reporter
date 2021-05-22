@@ -12,6 +12,19 @@ try {
         var nilWordArray = nilFileData.toLocaleLowerCase().split(',');
         core.info(nilWordArray)
 
+        // Parsing the issue
+
+        var issueContext = github.context.payload.issue.body;
+        var issueNumber = github.context.payload.issue.number;
+        var issueTitle = github.context.payload.issue.title;
+
+        core.info("Issue number: "+issueNumber)
+        core.info("Issue title: "+issueTitle)
+
+        // Create RegEx for parsing the data and comparing the nil
+        var regEx = new RegExp(nilWordArray.join('|'), '/gi');
+
+        core.info("-===================== "+issueContext)
 
 
     }
