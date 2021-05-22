@@ -21,20 +21,5 @@ jobs:
       - name: parsing from body of the issue
         uses: ./
         id: parseissue
-
-      # - name: Create Pull Request
-      #   if: steps.parseissue.outputs.continue-workflow == 'true'
-      #   uses: peter-evans/create-pull-request@v3
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     commit-message: Add new tweet file via automation
-      #     title: 'add: new tweet file via automation'
-      #     body: |
-      #       This PR is auto-generated.
-      #       Fixes: #${{ steps.parseissue.outputs.issueNumber}}
-      #       /cc @${{ github.actor }}
-      #     labels: add, automated pr
-      #     branch: add/${{ steps.parseissue.outputs.issueNumber}}
-      #     base: main
-      #     signoff: true
-      #     delete-branch: true
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
