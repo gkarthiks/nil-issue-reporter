@@ -22,7 +22,8 @@ try {
         core.info("Issue title: "+issueTitle)
 
         // Create RegEx for parsing the data and comparing the nil
-        var regEx = new RegExp(nilWordArray.join('|'), '/gi');
+        var regEx = new RegExp(nilWordArray.join('|'), 'gi');
+
 
         core.info("-===================== "+issueContext)
 
