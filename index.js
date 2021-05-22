@@ -12,7 +12,7 @@ try {
         var nilWordArray = nilFileData.toLocaleLowerCase().split(',');
 
 
-        core.info(github.context.payload);
+        core.info(JSON.stringify(github.context.payload));
 
 
         // Parsing the issue
@@ -54,6 +54,8 @@ function validateAndComment(stringToValidate, regEx, githubToken) {
         core.info("Got the following non-inclusive language in the context: "+matchedNIL);
         var bodyString = "Hi, you have the following non-inclusive language in the issue, please rephrase the sentence with inclusive language. Refer https://inclusivenaming.org/language/word-list/";
         commentToIssue(bodyString, githubToken)
+        core.info("===============================================================")
+        core.info(githubToken)
     } else {
         core.info("Hurray! The content is completely inclusive!!!");
     }
