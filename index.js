@@ -24,10 +24,8 @@ try {
         // Create RegEx for parsing the data and comparing the nil
         var regEx = new RegExp(nilWordArray.join('|'), 'gi');
 
-
-        core.info("-===================== "+issueContext)
-
-
+        core.info("============================================================");
+        core.info(issueContext.toLocaleLowerCase().match(regEx));
     }
 
 
