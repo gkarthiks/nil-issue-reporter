@@ -18,8 +18,8 @@ try {
         var labelArray = commaSeperatedStrToArray(commaSeperatedLbl);
         
         core.info("The NIL file picked up for comparative scan is from: "+nilFileLoc)
-        var nilFileData = fs.readFileSync(nilFileLoc, 'utf8');
-        
+        var nilFileData = readFileFrom(nilFileLoc);
+
         // Create RegEx for parsing the data and comparing the nil
         var nilWordArray = commaSeperatedStrToArray(nilFileData);
         var regEx = new RegExp(nilWordArray.join('|'), 'gi');
@@ -53,6 +53,16 @@ function validateAndComment(stringToValidate, regEx, issueAuthor, context, label
 
 }
 
+// reads the data of the file from the specified path,
+// if file doesn't exist, throws an error and sets the workflow to fail status
+function readFileFrom(filePath) {
+    try {
+        return fs.readFileSync(nilFileLoc, 'utf8');
+    } catch (err) {
+        console.error('Error occured while reading the file', e);
+        core.setFailed('Error occured while reading the file', e);
+    }
+}
 
 // Commenting back to issue with provided message
 function commentToIssue(body, labelArray, githubToken) {
