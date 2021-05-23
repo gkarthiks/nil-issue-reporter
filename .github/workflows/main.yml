@@ -17,9 +17,10 @@ jobs:
         with:
           node-version: '12'
           check-latest: true
-      - run: npm install
+      # - run: npm install
       - name: parsing from body of the issue
         uses: ./
         id: parseissue
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          labels: non-inclusive

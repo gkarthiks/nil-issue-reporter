@@ -8,6 +8,9 @@ inputs:
   token:
     description: Github token for octokit to comment back in the issue.
     required: true
+  labels:
+    description: Comma separated labels to be attached for flagging as non-inclusive issue.
+    required: false
 runs:
   using: 'node12'
   main: 'index.js'
