@@ -37,10 +37,11 @@ function validateAndComment(stringToValidate, regEx, issueAuthor, context, githu
     core.info("Validating the given string for non-inclusive language with regEx: "+regEx);
     var matchedNIL = stringToValidate.toLocaleLowerCase().match(regEx);
     if (matchedNIL != null && matchedNIL.length > 0) {
-        core.info("Got the following non-inclusive language in the context: "+matchedNIL);
+        var deDupeMatchedNIL = new Set(matchedNIL);
+        core.info("Got the following non-inclusive language in the context: "+deDupeMatchedNIL);
         var bodyString = `Hi @`+issueAuthor.trim()+`, you have the following non-inclusive language in the `+context+`, please rephrase the sentence with inclusive language. Refer https://inclusivenaming.org/language/word-list/
-        
-        `+matchedNIL;
+
+        `+[...deDupeMatchedNIL];
         commentToIssue(bodyString, githubToken)
     } else {
         core.info("Hurray! The content is completely inclusive!!!");
