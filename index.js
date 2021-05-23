@@ -51,6 +51,9 @@ function validateAndComment(stringToValidate, regEx, issueAuthor, context, githu
 
 // Commenting back to issue with provided message
 function commentToIssue(body, githubToken) {
+    github.getOctokit(githubToken).rest.issues.addLabels({
+        name: 'non-inclusive'
+    });
     github.getOctokit(githubToken).rest.issues.createComment({
         issue_number: github.context.issue.number,
         owner: github.context.repo.owner,
