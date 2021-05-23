@@ -38,7 +38,7 @@ function validateAndComment(stringToValidate, regEx, issueAuthor, context, githu
     var matchedNIL = stringToValidate.toLocaleLowerCase().match(regEx);
     if (matchedNIL != null && matchedNIL.length > 0) {
         var deDupeMatchedNIL = new Set(matchedNIL);
-        core.info("Got the following non-inclusive language in the context: "+deDupeMatchedNIL);
+        core.info("Got the following non-inclusive language in the context: "+[...deDupeMatchedNIL]);
         var bodyString = `Hi @`+issueAuthor.trim()+`, you have the following non-inclusive language in the `+context+`, please rephrase the sentence with inclusive language. Refer https://inclusivenaming.org/language/word-list/
 
         `+[...deDupeMatchedNIL];
@@ -52,13 +52,27 @@ function validateAndComment(stringToValidate, regEx, issueAuthor, context, githu
 
 // Commenting back to issue with provided message
 function commentToIssue(body, githubToken) {
-    github.getOctokit(githubToken).rest.issues.addLabels({
-        name: 'non-inclusive'
-    });
-    github.getOctokit(githubToken).rest.issues.createComment({
-        issue_number: github.context.issue.number,
-        owner: github.context.repo.owner,
-        repo: github.context.repo.repo,
-        body: body
-    });
+    try {
+        github.getOctokit(githubToken).rest.issues.addLabels({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            issue_number: github.context.issue.number,
+            labels: 'non-inclusive'
+        });
+    } catch (e) {
+        console.error('Error occured while adding labels', e);
+        core.setFailed('Error occured while adding labels', e);
+    }
+
+    try {
+        github.getOctokit(githubToken).rest.issues.createComment({
+            issue_number: github.context.issue.number,
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
+            body: body
+        });
+    } catch(e) {
+        console.error('Error occured while commenting back to issue', e);
+        core.setFailed('Error occured while commenting back to issue', e);
+    }
 }
