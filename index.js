@@ -59,8 +59,8 @@ function readFileFrom(filePath) {
     try {
         return fs.readFileSync(nilFileLoc, 'utf8');
     } catch (err) {
-        console.error('Error occured while reading the file', e);
-        core.setFailed('Error occured while reading the file', e);
+        console.error('Error occured while reading the file', err);
+        core.setFailed('Error occured while reading the file', err);
     }
 }
 
