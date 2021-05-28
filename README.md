@@ -25,7 +25,7 @@ jobs:
           node-version: '12'
           check-latest: true
       - name: NIL Reporter
-        uses: gkarthiks/nil-issue-reporter@0.1.0
+        uses: gkarthiks/nil-issue-reporter@0.2.0
         id: parseissue
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
