@@ -30,15 +30,20 @@ try {
 
         // Create RegEx for parsing the data and comparing the nil
         var nilWordArray = commaSeperatedStrToArray(nilFileData);
-        var regEx = new RegExp(nilWordArray.join('|'), 'gi');
+        if (nilWordArray.length > 0) {
+            var regEx = new RegExp(nilWordArray.join('|'), 'gi');
 
-        core.info("Issue number: "+issueNumber)
-        core.info("Issue title: "+issueTitle)
-
-        validateAndComment(issueTitle, regEx, issueAuthor, ISSUE_TITLE_CTX, labelArray, githubToken, eventName);
-        validateAndComment(issueContext, regEx, issueAuthor, ISSUE_DESC_CTX, labelArray, githubToken, eventName);
+            core.info("Issue number: "+issueNumber)
+            core.info("Issue title: "+issueTitle)
+    
+            validateAndComment(issueTitle, regEx, issueAuthor, ISSUE_TITLE_CTX, labelArray, githubToken, eventName);
+            validateAndComment(issueContext, regEx, issueAuthor, ISSUE_DESC_CTX, labelArray, githubToken, eventName);
+        } else {
+            core.setFailed("Non Inclusive word list to restrict is not defined yet. Please define the words to be resricted.");
+            commentToIssue("The non-inclusive word list is not defined. Please ask your admin to add the list of words to restrict and then comment `/validate`.", labelArray, githubToken);
+        }
     }
-
+    
 } catch (error) {
   core.setFailed(error.message);
 }
