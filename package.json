@@ -1,6 +1,6 @@
 {
   "name": "nil-issue-reporter",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Non-Inclusive Language(nil) issue reporter parses the issue content and write comment to the author on the issue.",
   "main": "index.js",
   "scripts": {

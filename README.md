@@ -21,12 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-          check-latest: true
       - name: NIL Reporter
-        uses: gkarthiks/nil-issue-reporter@0.2.0
+        uses: gkarthiks/nil-issue-reporter@0.2.1
         id: parseissue
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -45,3 +41,6 @@ This can be customized by changing it in the workflow YML file. For example, if 
 * Auto validate for edit on the issue body
 * Extend for issue comments
 * Extend for Pull Requests
+
+## :warning: Important Note
+As of now, this GitHub action is looking for a repo owner's defined words for restricting the non-inclusive language. Once the [Inclusive Naming](https://inclusivenaming.org) defines machine-parsable words for restriction, it will be used rather depending on the repo owner's list.
